@@ -1,0 +1,11 @@
+oss:
+  endpoint: oss-cn-beijing.aliyuncs.com
+  bucket: gulimall-hihiha
+  access-key: LTAI5tJ6K4mB7MYJjAzNzvaz
+  secret-key:  sWifjEHX599mM2bAT3MRnQRo6z9B6a
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+

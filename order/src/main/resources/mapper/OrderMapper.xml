@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxh.order.mapper.OrderMapper">
+
+    <resultMap id="UserCourseMap" type="com.zxh.order.dto.UserCourseDto">
+        <result column="user_id" property="userId"></result>
+        <result column="course_id" property="courseId"></result>
+    </resultMap>
+
+    <insert id="createOrder">
+        INSERT into `order` (user_id,order_id,state,course_id,create_time) VALUES (#{order.userId},#{order.orderId},#{order.state},#{order.courseId},#{order.createTime})
+    </insert>
+    <update id="orderChange" >
+        UPDATE `order` SET state = '1' WHERE order_id = #{orderId};
+    </update>
+    <update id="updateByOrderId">
+         UPDATE `order` SET state = '2' WHERE order_id = #{orderId};
+    </update>
+    <select id="getOrderId" resultType="java.lang.String">
+       SELECT order_id from `order`  where course_id = #{vo.courseId} and user_id = #{vo.userId} and state = '0'
+    </select>
+    <select id="getUserCourse" resultMap="UserCourseMap">
+          SELECT user_id,course_id from `order` WHERE order_id = #{orderId};;
+    </select>
+    <select id="getState" resultType="java.lang.String">
+        SELECT state from `order` where  order_id = #{orderId}
+    </select>
+</mapper>

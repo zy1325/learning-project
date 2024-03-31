@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: backsystem_route
+          uri: lb://backsystem
+          predicates:
+            - Path=/api/system/**
+          filters:
+            - RewritePath=/api/system/(?<segment>.*),/$\{segment}
+
+        - id: teacher_route
+          uri: lb://teacher
+          predicates:
+              - Path=/api/teacher/**
+          filters:
+              - RewritePath=/api/teacher/(?<segment>.*),/$\{segment}
+
+        - id: order_route
+          uri: lb://order
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api/order/(?<segment>.*),/$\{segment}
